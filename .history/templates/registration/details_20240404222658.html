@@ -1,0 +1,9 @@
+{% extends 'account/base.html' %} {% block content %}
+<form method="post">
+  {% csrf_token %} {{ form.as_p }} {{ tenth_formset.management_form }} {% for form in tenth_formset %} {{ form.as_p }}
+  {% endfor %}
+  <div>10+2 scores</div>
+  {{ twelfth_formset.management_form }} {% for form in twelfth_formset %} {{ form.as_p }} {% endfor %}
+  <button type="submit">Save</button>
+</form>
+{%endblock%}
