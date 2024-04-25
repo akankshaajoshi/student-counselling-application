@@ -1,0 +1,46 @@
+{% extends 'account/base.html' %} {% block content %}
+<style>
+  label {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+  }
+  input,
+  select,
+  textarea {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+  }
+  button[type="submit"] {
+    width: 100px;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: #007bff;
+    color: white;
+  }
+</style>
+<form method="post" style="max-width: 1000px; margin: 0 auto">
+  {% csrf_token %}
+  <div style="display: flex; flex-direction: row; gap: 80px">
+    <div>
+      <h2>Personal Details</h2>
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+    </div>
+    <div>
+      <h2>10th Score</h2>
+      {{ tenth_formset.management_form }} {% for form in tenth_formset %}
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      <h2>10+2 Score</h2>
+      {{ twelfth_formset.management_form }} {% for form in twelfth_formset %}
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

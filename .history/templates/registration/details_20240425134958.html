@@ -1,0 +1,67 @@
+{% extends 'account/base.html' %} {% block head_title %}{% trans "Student register" %}{% endblock %} {% block content %}
+<style>
+  h2 {
+    font-weight: 700;
+    padding: 0 0px 40px 0;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  label {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding-bottom: 5px;
+  }
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+  }
+  button[type="submit"] {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100px;
+    color: white;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: green;
+    color: white;
+  }
+  .form {
+    padding: 40px;
+  }
+</style>
+<form method="post" style="max-width: 100vw; margin: auto">
+  {% csrf_token %}
+  <div style="display: flex; flex-direction: row; max-width: 100vw; gap: 80px">
+    <div class="form">
+      <h2>Personal Details</h2>
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+    </div>
+    <div class="form">
+      <h2>10<sup>th</sup> score</h2>
+      {{ tenth_formset.management_form }} {% for form in tenth_formset %}
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+      {% endfor %}
+    </div>
+    <div class="form">
+      <h2>12<sup>th</sup> score</h2>
+      {{ twelfth_formset.management_form }} {% for form in twelfth_formset %}
+      <div style="margin-bottom: 10px">{{ form.as_p }}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

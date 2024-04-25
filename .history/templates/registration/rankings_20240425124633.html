@@ -1,0 +1,36 @@
+{% extends 'account/base.html' %} {% block content %}
+<style>
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #edf2fb;
+  }
+  .table {
+    border: 1px solid #dee2e6;
+  }
+
+  tr::first-child {
+    background: #33415c;
+  }
+</style>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-3">Student Rankings</h2>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr style="background-color: #33415c">
+        <th scope="col">Rank</th>
+        <th scope="col">Name</th>
+        <th scope="col">Total Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.rank }}</td>
+        <td>{{ student.first_name }} {{ student.last_name }}</td>
+        <td>{{ student.total_score }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
